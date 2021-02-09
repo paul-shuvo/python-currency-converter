@@ -75,13 +75,32 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
+# - script: |
+#     pip install pytest pytest-azurepipelines
+#     pytest
+#   displayName: 'pytest'
+
+# - script: |
+#     pip install coverage
+#     coverage run -m pytest
+#     coverage report -m
+#     coverage html
 - script: |
     pip install pytest pytest-azurepipelines
-    pytest
-  displayName: 'pytest'
+    pip install pytest-cov
+    pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml --cov-report=html
+  displayName: 'Test with pytest'
 
-- script: |
-    pip install coverage
-    coverage run -m pytest
-    coverage report -m
-    coverage html
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testResultsFiles: '**/test-*.xml'
+    testRunTitle: 'Publish test results for Python $(python.version)'
+  displayName: 'Publish test results'
+
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/**/htmlcov'
+  displayName: 'Publish code coverage results'
