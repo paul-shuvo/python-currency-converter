@@ -10,6 +10,7 @@ pool:
   vmImage: 'windows-latest'
 
 strategy:
+  maxParallel: '5'
   matrix:
     Python35:
       python.version: '3.5'
@@ -21,6 +22,7 @@ strategy:
       python.version: '3.8'
     Python39:
       python.version: '3.9'
+
 
 steps:
 - task: UsePythonVersion@0
@@ -42,7 +44,6 @@ steps:
     pip install coverage
     coverage run -m pytest
     coverage report -m
-    coverage html
     coverage xml
 
 # - script: |
