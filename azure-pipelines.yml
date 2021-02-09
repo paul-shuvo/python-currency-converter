@@ -49,7 +49,7 @@ trigger:
 #   vmImage: $(image)
 
 pool:
-  vmImage: 'Ubuntu-20.04'
+  vmImage: 'windows-latest'
 
 strategy:
   matrix:
