@@ -18,7 +18,7 @@ setup(
         "Programming Language :: Python :: 3 :: Only",
         "Topic :: Software Development",
     ],
-    install_requies=["beautifulsoup4", "requests"],
+    install_requies=["beautifulsoup4", "requests", "lxml", "html5lib", "future-fstrings"],
     extras_require={"dev": ["pytest", "coverage", "check-manifest", "twine", "tox"]},
 )
 
