@@ -4,18 +4,59 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
 trigger:
-- main
+- main  
 
-pool:
-  vmImage: 'Ubuntu-20.04'
 strategy:
   matrix:
-    Python35:
-      python.version: '3.5'
-    Python36:
+    'Ubuntu 20.04 py36':
+      image: 'ubuntu-20.04'
       python.version: '3.6'
-    Python37:
+    'Ubuntu 20.04 py37':
+      image: 'ubuntu-20.04'
       python.version: '3.7'
+    'Ubuntu 20.04 py38':
+      image: 'ubuntu-20.04'
+      python.version: '3.8'
+    'Ubuntu 18.04 py36':
+      image: 'ubuntu-18.04'
+      python.version: '3.6'
+    'Ubuntu 18.04 py37':
+      image: 'ubuntu-18.04'
+      python.version: '3.7'
+    'Ubuntu 18.04 py38':
+      image: 'ubuntu-18.04'
+      python.version: '3.8'
+    'MacOS Latest py36':
+      image: 'macos-latest'
+      python.version: '3.6'
+    'MacOS Latest py37':
+      image: 'macos-latest'
+      python.version: '3.7'
+    'MacOS Latest py38':
+      image: 'macos-latest'
+      python.version: '3.8'
+    'Windows Latest py36':
+      image: 'windows-latest'
+      python.version: '3.6'
+    'Windows Latest py37':
+      image: 'windows-latest'
+      python.version: '3.7'
+    'Windows Latest py38':
+      image: 'windows-latest'
+      python.version: '3.8'
+
+pool:
+  vmImage: $(image)
+
+# pool:
+#   vmImage: 'Ubuntu-20.04'
+
+# strategy:
+#   matrix:
+#     Python36:
+#       python.version: '3.6'
+#     Python37:
+#       python.version: '3.7'
 
 steps:
 - task: UsePythonVersion@0
