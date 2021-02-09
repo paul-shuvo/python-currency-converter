@@ -2,7 +2,6 @@ import pytest
 from unittest.mock import Mock, patch
 from currency_converter import CurrencyConverter
 
-
 def test_init():
     cc = CurrencyConverter()
     assert isinstance(cc.from_, list)

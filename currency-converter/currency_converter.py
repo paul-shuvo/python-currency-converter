@@ -1,4 +1,5 @@
-# -- coding: future_fstrings --
+# -*- coding: future_fstrings -*-
+
 import requests
 from bs4 import BeautifulSoup
 import json
